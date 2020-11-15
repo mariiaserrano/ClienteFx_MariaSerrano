@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
+    <children>
+        <Label layoutX="159.0" layoutY="129.0" text="Usuario:"/>
+        <Label layoutX="139.0" layoutY="168.0" text="Contraseña:"/>
+        <TextField fx:id="fxUsuario" layoutX="246.0" layoutY="125.0"/>
+        <PasswordField fx:id="fxPass" layoutX="244.0" layoutY="173.0"/>
+        <Button layoutX="295.0" layoutY="240.0" mnemonicParsing="false" onAction="#hazLogin" text="Login"/>
+        <Label layoutX="281.0" layoutY="66.0" text="Tienda" >
+            <font>
+                <Font name="Yu Gothic Regular" size="24.0"/>
+            </font>
+        </Label>
+
+    </children>
+</AnchorPane>
