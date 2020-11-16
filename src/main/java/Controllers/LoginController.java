@@ -70,12 +70,12 @@ public class LoginController implements Initializable {
                     inicio.cargarPantallaProductos();
                 }
                 else{
-                    alert.setContentText("Usuario o contraseña incorrectos");
+                    alert.setContentText("Error :" + resp.code() +" "+ resp.message() + " " + respuesta);
                     alert.showAndWait();
                 }
             }
             else{
-                alert.setContentText("error" + resp.code() + "  " + resp.message());
+                alert.setContentText("Error : " + resp.code() + " :  " + resp.message());
                 alert.showAndWait();
             }
 

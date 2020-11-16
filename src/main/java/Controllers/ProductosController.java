@@ -13,6 +13,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -52,6 +53,12 @@ public class ProductosController implements Initializable {
         String[] productosLista = productos.split(",");
         List<String> listaProductos = Arrays.asList(productosLista);
 
+        if (listaProductos.isEmpty() || listaProductos == null) {
+            alertError.setContentText("Lista de productos Vacía");
+            alertError.showAndWait();
+
+        }
+
         clientOK.connectionPool().evictAll();
 
         return listaProductos;
@@ -67,7 +74,6 @@ public class ProductosController implements Initializable {
 
             fxListViewProducto.getItems().addAll(verProductos());
 
-
         } else {
             alertError.setContentText("Lista Vacia");
             alertError.showAndWait();
@@ -81,12 +87,11 @@ public class ProductosController implements Initializable {
 
         productoComprado.addAll(fxListViewProducto.getSelectionModel().getSelectedItems());
 
-
-        if(!productoComprado.isEmpty()){
+        if (!productoComprado.isEmpty()) {
             String url = Configuration.getInstance().getRuta() + "cesta";
             FormBody.Builder form1 = new FormBody.Builder();
-            form1.add("anadiendo","true");
-            form1.add("productoComprado",productoComprado.toString());
+            form1.add("anadiendo", "true");
+            form1.add("productoComprado", productoComprado.toString());
 
 
             FormBody formBody = form1.build();
@@ -100,19 +105,17 @@ public class ProductosController implements Initializable {
             String response = resp.body().string();
 
 
-            if(resp.isSuccessful()){
-                alert.setContentText(resp.code() + response);
-                alert.showAndWait();
-            }
-            else {
-                alert.setContentText(resp.code() + response);
-                alert.showAndWait();
+            if (resp.isSuccessful()) {
+                alertInformacion.setContentText(resp.code() + resp.message());
+                alertInformacion.showAndWait();
+            } else {
+                alertInformacion.setContentText(resp.code() + resp.message());
+                alertInformacion.showAndWait();
 
             }
 
 
         }
-
 
 
         inicio.cargarPantallaCesta();
@@ -123,7 +126,8 @@ public class ProductosController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fxListViewProducto.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        alert =  new Alert(Alert.AlertType.INFORMATION);
+        alertInformacion = new Alert(Alert.AlertType.INFORMATION);
+        alertError = new Alert(Alert.AlertType.ERROR);
 
     }
 }

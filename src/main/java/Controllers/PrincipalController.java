@@ -48,6 +48,7 @@ public class PrincipalController implements Initializable {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     private void preCargaProductos() {
         try {
             FXMLLoader loaderMenu = new FXMLLoader(getClass().getResource("/fxml/Productos.fxml"));
@@ -98,15 +99,14 @@ public class PrincipalController implements Initializable {
 
     }
 
-    public void setOkHttpClient(OkHttpClient okHttpClient){
-        this.okHttpClient=okHttpClient;
+    public void setOkHttpClient(OkHttpClient okHttpClient) {
+        this.okHttpClient = okHttpClient;
 
     }
 
-    public OkHttpClient getOkHttpClient(){
+    public OkHttpClient getOkHttpClient() {
         return okHttpClient;
     }
-
 
 
     @Override
